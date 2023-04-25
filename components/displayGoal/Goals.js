@@ -1,7 +1,7 @@
 import React from 'react'
 import { FlatList, Text, StyleSheet, View } from 'react-native'
 
-const Goals = ({goals}) => {
+const Goals = ({goals, handleDelete}) => {
   return (
     <View style={styles.goalsContainer}>
     <FlatList
@@ -10,7 +10,7 @@ const Goals = ({goals}) => {
         renderItem = {data => {
             return (
                 <View style={styles.goalItem}>
-                    <Text style={styles.goalText}>{data.item.text}</Text>
+                    <Text style={styles.goalText} onPress={()=>handleDelete(data.item)}>{data.item.text}</Text>
                 </View>
             )
         }}

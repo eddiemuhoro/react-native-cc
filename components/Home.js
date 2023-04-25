@@ -25,8 +25,9 @@ const Home = () => {
   
   return (
    <View style={styles.container}>
-         <Post goalInputHandler={goalInputHandler} addGoalHandler={addGoalHandler} />
-        <Goals goals={courseGoals} onDelete={handleDelete} />
+         <Text style={{color:'#fff', fontSize:20}}>
+            wlcome
+         </Text>
    </View>
   )
 }
@@ -38,6 +39,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         width: '100%',
+        backgroundColor: '#15202B'
     },
   
     
