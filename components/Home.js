@@ -1,46 +1,25 @@
 import React, { useState } from 'react'
-import { Button, FlatList, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
-import Goals from './displayGoal/Goals'
-import Post from './addGoal/Post'
+import { useEffect } from "react";
+import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
-const Home = () => {
-    const [enteredGoal, setEnteredGoal] = useState('')
-    const [courseGoals, setCourseGoals] = useState([])
+import axios from 'axios';
+import Electronics from './fetch_products/ELECTRONICS/Electronics';
+import Fashion from './fetch_products/FASHION/Fashion';
 
-    const goalInputHandler = (enteredText) => {{
-        setEnteredGoal(enteredText)
-    } }
+const Home = ({ route, navigation }) => {
 
-    const addGoalHandler = () => {{
-        console.log(enteredGoal)
-        setCourseGoals(currentGoals => [...currentGoals, {
-            id: Math.random().toString(),
-            text: enteredGoal
-        }])
-    }}
 
-    const handleDelete = (goal) => {
-        setCourseGoals(currentGoals => currentGoals.filter((item) => item !== goal))
-    }
-  
-  return (
-   <View style={styles.container}>
-         <Text style={{color:'#fff', fontSize:20}}>
-            wlcome
-         </Text>
-   </View>
-  )
+
+    return (
+<View style={{flex:1, justifyContent: 'flex-start', }}>
+    <ScrollView>
+
+    <Electronics />
+    <Fashion />
+    </ScrollView>
+</View>
+
+    )
 }
 
 export default Home
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-        width: '100%',
-        backgroundColor: '#15202B'
-    },
-  
-    
-})
