@@ -4,12 +4,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Home from '../components/Home';
 import Login from '../components/screens/auth/Login';
 import Register from '../components/screens/auth/Register';
+import BottomNavigation from './BottomNavigation';
 
 const Stack = createNativeStackNavigator();
 
 const AuthNavigator = () => {
   return (
       <Stack.Navigator
+      initialRouteName='Login'
       screenOptions={{
         headerTintColor: '#fff',
         headerStyle: {
@@ -29,8 +31,15 @@ const AuthNavigator = () => {
             options={{headerShown: false}}
         />
          <Stack.Screen
-            name="Home"
-            component={Home}
+            name="Shop"
+            options={{headerBackVisible: false}}
+            component={BottomNavigation}
+        />
+        <Stack.Screen
+          name='details'
+          component={Home}
+          options={({route}) => ({title: route.params.productId})}
+
         />
         {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       </Stack.Navigator>
