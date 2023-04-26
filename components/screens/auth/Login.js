@@ -17,7 +17,7 @@ const Login = ({navigation}) => {
                 underlayColor="#5467FF"
                 onPress={() => {
                     // Handle button press
-                    navigation.navigate('Home')
+                    navigation.navigate('Shop', {userName: 'Edwin'})
                 }}
             >
                 <Text style={styles.buttonText}>Sign In</Text>
