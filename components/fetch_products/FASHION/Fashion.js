@@ -3,22 +3,28 @@ import { useEffect } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
+import { CategoryContext } from '../ELECTRONICS/Categories';
 
-const Fashion = ({ route, navigation }) => {
+const Fashion = ({ route, navigation, category }) => {
 
 
+    console.log('====================================');
+    console.log(category);
+    console.log('====================================');
 
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://fakestoreapi.com/products`)
+        axios.get(`https://fakestoreapi.com/products/category/${category}`)
             .then(response => {
                 setProducts(response.data);
             })
             .catch(error => {
                 console.log(error);
             });
-    }, []);
+    }, [category]);
+
+
 
     const cutDescription = (description) => {
         if (description.length > 15) {
@@ -34,7 +40,7 @@ const Fashion = ({ route, navigation }) => {
 
         <TouchableOpacity
             style={styles.productItem}
-            onPress={()=> navigation.navigate('ProductDetails', {item})}
+            // onPress={()=> navigation.navigate('ProductDetails', {item})}
         >
             <Image
                 source={{ uri: item.image }}
@@ -59,15 +65,16 @@ const Fashion = ({ route, navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={{ color: '#fff', fontSize: 20, marginBottom:10 }}>
-                Products
+                {category}
             </Text>
-            <FlatList showsVerticalScrollIndicator={false}
-                data={products}
-                numColumns={2}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-            />
-           
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <FlatList showsVerticalScrollIndicator={false}
+                    data={products}
+                    numColumns={2}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                />
+           </ScrollView>
         </View>
     )
 }
