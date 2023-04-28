@@ -7,11 +7,13 @@ import Register from '../components/screens/auth/Register';
 import BottomNavigation from './BottomNavigation';
 import { ScreenStackHeaderRightView } from 'react-native-screens';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import ProductDetailsScreen from '../components/fetch_products/FASHION/Details';
 
 const Stack = createNativeStackNavigator();
 
 const AuthNavigator = ({navigation}) => {
   return (
+    
       <Stack.Navigator
       initialRouteName='Login'
       screenOptions={{
@@ -51,6 +53,14 @@ const AuthNavigator = ({navigation}) => {
           component={Home}
           options={({route}) => ({title: route.params.productId})}
 
+        />
+        {
+          //screen for product details
+        }
+        <Stack.Screen
+          name='ProductDetails'
+          component={ProductDetailsScreen}
+          options={({route}) => ({title: route.params.productId})}
         />
         {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       </Stack.Navigator>

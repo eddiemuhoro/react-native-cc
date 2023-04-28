@@ -8,7 +8,7 @@ import Settings from '../components/profile/Settings';
 
 const Tab = createBottomTabNavigator();
 
-const BottomNavigation = () => {
+const BottomNavigation = ({navigation}) => {
     return (
 
         <Tab.Navigator

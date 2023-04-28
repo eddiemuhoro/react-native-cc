@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 import axios from 'axios';
-import Fashion from './fetch_products/FASHION/Fashion';
+import Fashion from './fetch_products/FASHION/Products';
 import Categories from './fetch_products/ELECTRONICS/Categories';
 
 const Home = ({ route, navigation }) => {
@@ -14,7 +14,7 @@ const Home = ({ route, navigation }) => {
         <View style={{ flex: 1, justifyContent: 'flex-start', }}>
 
           
-                <Categories />
+                <Categories navigation={navigation} />
                 
          
         </View>
