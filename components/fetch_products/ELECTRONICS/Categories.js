@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 import axios from 'axios';
-import Fashion from '../FASHION/Fashion';
+import Fashion from '../FASHION/Products';
 export const CategoryContext = createContext();
 
 const Categories = ({ route, navigation }) => {
@@ -89,7 +89,7 @@ const Categories = ({ route, navigation }) => {
                   keyExtractor={(item) => item.id}
                 />
   
-                <Fashion category={category} />
+                <Fashion navigation={navigation} category={category} />
               </View>
             ) : item.key === 'footer' ? (
               <View style={{ height: 100 }}><Text>footer</Text></View>
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color:'#fff'
-        
+
     },
     flatList: {
         flexGrow: 0,
