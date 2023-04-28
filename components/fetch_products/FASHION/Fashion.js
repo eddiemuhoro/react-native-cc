@@ -67,14 +67,15 @@ const Fashion = ({ route, navigation, category }) => {
             <Text style={{ color: '#fff', fontSize: 20, marginBottom:10 }}>
                 {category}
             </Text>
-            <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={styles.flats}>
                 <FlatList showsVerticalScrollIndicator={false}
                     data={products}
                     numColumns={2}
                     renderItem={renderItem}
                     keyExtractor={(item) => item.id}
                 />
-           </ScrollView>
+            </View>
+          
         </View>
     )
 }
@@ -85,7 +86,8 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         width: '100%',
-       backgroundColor:'#15202B'
+       backgroundColor:'#15202B',
+        
     },
   
       productItem: {
@@ -96,15 +98,13 @@ const styles = StyleSheet.create({
         width: '50%',
       },
       productImage: {
-        width:' 100%',
+        width:'100%',
         height: 180,
-       
         borderRadius: 10,
         resizeMode: 'contain',
       },
         productDetails: {
-        width: '100%',
-               
+        width: '100%',    
         },
       productName: {
         fontSize: 16,
@@ -115,5 +115,4 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: '#ccc',
       },
-   
 })
