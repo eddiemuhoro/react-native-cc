@@ -3,14 +3,16 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../components/Home';
 import Register from '../components/screens/auth/Register';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
 
 const BottomNavigation = () => {
   return (
     
-    <Tab.Navigator>
+    <Tab.Navigator
+        initialRouteName='Home'
+    >
     <Tab.Screen name="Home" 
     options={{
         headerShown: false,
@@ -25,7 +27,7 @@ const BottomNavigation = () => {
     options={{
         headerShown: false,
         tabBarIcon: ({color, size}) => (
-            <Icon name="settings" color={color} size={size} />
+            <Icon name="facebook" color={color} size={size} />
         )
     }}
      component={Register} />
