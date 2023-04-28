@@ -11,13 +11,13 @@ const Home = ({ route, navigation }) => {
 
 
     return (
-<View style={{flex:1, justifyContent: 'flex-start', }}>
-   
-<ScrollView showsVerticalScrollIndicator={false}>
-    <Categories />
-    
-   </ScrollView>
-</View>
+        <View style={{ flex: 1, justifyContent: 'flex-start', }}>
+
+          
+                <Categories />
+                
+         
+        </View>
 
     )
 }
