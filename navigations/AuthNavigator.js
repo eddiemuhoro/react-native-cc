@@ -5,10 +5,12 @@ import Home from '../components/Home';
 import Login from '../components/screens/auth/Login';
 import Register from '../components/screens/auth/Register';
 import BottomNavigation from './BottomNavigation';
+import { ScreenStackHeaderRightView } from 'react-native-screens';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Stack = createNativeStackNavigator();
 
-const AuthNavigator = () => {
+const AuthNavigator = ({navigation}) => {
   return (
       <Stack.Navigator
       initialRouteName='Login'
@@ -32,7 +34,16 @@ const AuthNavigator = () => {
         />
          <Stack.Screen
             name="Shop"
-            options={{headerBackVisible: false}}
+            options={{
+              headerBackVisible: false,
+              headerRight: () => (
+                <Icon name="account-circle" 
+                size={30} 
+                color="white" 
+                onPress={() => navigation.openDrawer()}
+                />
+              ),
+            }}
             component={BottomNavigation}
         />
         <Stack.Screen
