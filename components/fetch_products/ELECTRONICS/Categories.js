@@ -73,20 +73,31 @@ const Categories = ({ route, navigation }) => {
     return (
      
         <View style={styles.container}>
-            <Text style={{ color: '#fff', fontSize: 20 }}>
-                Collections
-            </Text>
-            
-            <FlatList showsVerticalScrollIndicator={false}
-                data={categories}
-                style={styles.flatList}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-            />
-            <Fashion category={category} />
-        </View>
+        <FlatList
+          data={[{ key: 'header' },  { key: 'footer' }]}
+          renderItem={({ item }) =>
+            item.key === 'header' ? (
+              <View style={styles.content}>
+                <Text style={styles.title}>Collections</Text>
+                <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={categories}
+                  style={styles.flatList}
+                  showsHorizontalScrollIndicator={false}
+                  horizontal={true}
+                  renderItem={renderItem}
+                  keyExtractor={(item) => item.id}
+                />
+  
+                <Fashion category={category} />
+              </View>
+            ) : item.key === 'footer' ? (
+              <View style={{ height: 100 }}><Text>footer</Text></View>
+            ) : null
+          }
+          keyExtractor={(item) => item.key}
+        />
+      </View>
       
     )
 }
@@ -97,7 +108,13 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         width: '100%',
-       backgroundColor:'#15202B'
+       backgroundColor:'#15202B',
+    },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color:'#fff'
+        
     },
     flatList: {
         flexGrow: 0,
