@@ -23,7 +23,7 @@ export default function App() {
       }}
       >
         <Drawer.Screen
-         name="Shop"
+         name="Shops"
         options={{
           headerShown: false,
         }}
