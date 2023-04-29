@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
+import { API_URL } from '../../../constants/constants';
 
 const Fashion = ({ route, navigation, category }) => {
 
@@ -14,7 +15,7 @@ const Fashion = ({ route, navigation, category }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://fakestoreapi.com/products/category/${category}`)
+        axios.get(`${API_URL}/products/category/${category}`)
             .then(response => {
                 setProducts(response.data);
             })
@@ -39,7 +40,7 @@ const Fashion = ({ route, navigation, category }) => {
 
         <TouchableOpacity
             style={styles.productItem}
-            onPress={()=> navigation.navigate('productDetails', {productId: item.id })}
+            onPress={()=> navigation.navigate('productDetails', {productId: item.id.toString()})}
         >
             <Image
                 source={{ uri: item.image }}
