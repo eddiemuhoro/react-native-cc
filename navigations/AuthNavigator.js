@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 
 const AuthNavigator = ({navigation}) => {
   return (
-    
+    <NavigationContainer>
       <Stack.Navigator
       initialRouteName='Login'
       screenOptions={{
@@ -42,7 +42,7 @@ const AuthNavigator = ({navigation}) => {
                 <Icon name="account-circle" 
                 size={30} 
                 color="white" 
-                onPress={() => navigation.openDrawer()}
+              
                 />
               ),
             }}
@@ -67,6 +67,7 @@ const AuthNavigator = ({navigation}) => {
         />
         {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       </Stack.Navigator>
+      </NavigationContainer>
   );
 };
 
