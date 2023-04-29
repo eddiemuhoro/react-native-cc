@@ -10,7 +10,10 @@ import Myprofile from './components/profile/Myprofile';
 const Drawer= createDrawerNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
+    <View style={styles.container}>
+
+ 
+    {/* <NavigationContainer>
     
       <Drawer.Navigator
       initialRouteName="Login"
@@ -30,17 +33,17 @@ export default function App() {
          component={AuthNavigator} />
     
       </Drawer.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> */}
+    <AuthNavigator />
 
-   
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#000',
+        
+    }
 });
