@@ -15,7 +15,7 @@ const Fashion = ({ route, navigation, category }) => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get(`${API_URL}/products/category/${category}`)
+        axios.get(`${API_URL}/product`)
             .then(response => {
                 setProducts(response.data);
             })
@@ -26,13 +26,13 @@ const Fashion = ({ route, navigation, category }) => {
 
 
 
-    const cutDescription = (description) => {
-        if (description.length > 15) {
-          return description.substring(0, 15) + '...'
-        } else if (description.length <15) {
-          return description
-        }
-      }
+    // const cutDescription = (description) => {
+    //     if (description.length > 15) {
+    //       return description.substring(0, 15) + '...'
+    //     } else if (description.length <15) {
+    //       return description
+    //     }
+    //   }
     
 
 
@@ -43,12 +43,12 @@ const Fashion = ({ route, navigation, category }) => {
             onPress={()=> navigation.navigate('productDetails', {productId: item.id.toString()})}
         >
             <Image
-                source={{ uri: item.image }}
+                source={{ uri: item.images[0] }}
                 style={styles.productImage}
             />
             <View style={styles.productDetails} >
                 <View style={styles.productNameContainer}>
-                    <Text style={styles.productName}>{cutDescription(item.title)}</Text>
+                    <Text style={styles.productName}>{(item.name)}</Text>
                     <TouchableOpacity
                         style={styles.favoriteButton}
                         onPress={() => console.log('favorite button pressed')}

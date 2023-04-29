@@ -1,14 +1,36 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, StyleSheet, Button, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, Button, ScrollView, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { Dimensions } from 'react-native';
 import axios from 'axios';
-import { API_URL } from '../../../constants/constants'; 
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { API_URL } from '../../../constants/constants';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const ProductDetailsScreen = ({ route }) => {
   const { productId } = route.params;
   const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [ userData, setUserData ] = useState(null);
+
+  useEffect(()=>{
+    //load data from async storage
+    AsyncStorage.getItem('user')
+    .then((data)=>{
+      const user = JSON.parse(data);
+      setUserData(user);
+    })
+    .catch((error)=>{
+      console.log(error);
+    }
+    )
+  }, [])
+
+  console.log('====================================');
+  console.log(userData);
+  console.log('====================================');
 
   useEffect(() => {
-    axios.get(`${API_URL}/products/${productId}`)
+    axios.get(`${API_URL}/product/${productId}`)
       .then(response => {
         setProduct(response.data);
       })
@@ -21,15 +43,55 @@ const ProductDetailsScreen = ({ route }) => {
     return <Text>Loading...</Text>;
   }
 
+
+  //add order to cart
+  const handleAddOrder = async () => {
+    setLoading(true);
+    const data = {
+      product_id: product.id,
+      buyer_id : userData.id,
+      quantity: product.quantity,
+      buyer_email: userData.email,
+      buyer_name: userData.name,
+      location: 'Nyeri',
+    };
+
+    try {
+      const response = await axios.post(`${API_URL}/order/create`, data);
+      console.log(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
+
   return (
     <ScrollView style={styles.container}>
-      <Image
-        source={{ uri: product.image }}
-        style={styles.image}
-      />
+     
+      <View style={styles.imageContainer}>
+        <Image
+          source={{ uri: product.images[0] }}
+          style={styles.image}
+        />
+        <Icon name="heart" size={24} color="#ff6b6b" style={{position: 'absolute', right: 10, top: 10}} />
+      </View>
       <Text style={styles.title}>{product.title}</Text>
-      <Text style={styles.price}>Price: Ksh {product.price.toString()}</Text>
+      <Text style={styles.price}>Price: Ksh {product.price}</Text>
       <Text style={styles.description}>{product.description}</Text>
+     
+      <TouchableHighlight
+                style={styles.buttonContainer}
+                underlayColor="#5467FF"
+                onPress={handleAddOrder}
+            >
+                {
+                    loading ? <Text style={styles.buttonText}>Ordering...</Text> : <Text style={styles.buttonText}>Order Now</Text>
+                }
+               
+            </TouchableHighlight>
+
     </ScrollView>
   );
 };
@@ -62,7 +124,21 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     color: '#E5E6E4',
+    marginBottom: 20,
   },
+  buttonContainer: {
+    backgroundColor: '#ff6b6b',
+    borderRadius: 5,
+    padding: 10,
+    marginTop: 10,
+},
+buttonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+
+},
 });
 
 export default ProductDetailsScreen;
