@@ -5,6 +5,7 @@ import Home from '../components/Home';
 import Register from '../components/screens/auth/Register';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Settings from '../components/profile/Settings';
+import Favorites from '../components/fetch_products/FAVORITES/Favorites';
 
 const Tab = createBottomTabNavigator();
 
@@ -50,7 +51,7 @@ const BottomNavigation = ({navigation}) => {
                         <Icon name="heart" color={color} size={size} />
                     )
                 }}
-                component={Register} />
+                component={Favorites} />
 
             <Tab.Screen name="Settings"
                 options={{
