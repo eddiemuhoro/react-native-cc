@@ -8,74 +8,61 @@ const ProductDetailsScreen = ({ route }) => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(`${API_URL}product/${productId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProduct(data);
+    axios.get(`${API_URL}/products/${productId}`)
+      .then(response => {
+        setProduct(response.data);
       })
-      .catch((error) => {
-        console.error(error);
+      .catch(error => {
+        console.log(error);
       });
-  }, []);
+  }, [productId]);
 
   if (!product) {
-    return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <Text>Loading...</Text>;
   }
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: product.images[0] }} style={styles.productImage} />
-      <View >
-
-        <Text style={styles.productName}>{product.name}</Text>
-        <Text style={styles.productPrice}>${product.price}</Text>
-      </View>
-      <Text style={styles.productDescription}>{product.description}</Text>
-      <Button style={{width:'100%'}} title="Add to Cart" onPress={() => {}} />
-
-      <View>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 10 }}>Related Products</Text>
-        
-      </View>
-    </View>
-  
-   
+    <ScrollView style={styles.container}>
+      <Image
+        source={{ uri: product.image }}
+        style={styles.image}
+      />
+      <Text style={styles.title}>{product.title}</Text>
+      <Text style={styles.price}>Price: Ksh {product.price.toString()}</Text>
+      <Text style={styles.description}>{product.description}</Text>
+    </ScrollView>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    minHeight: Dimensions.get('window').height + 100, // add 100 for the related products section
-
+    padding: 10,
+   
+    backgroundColor: '#15202B',
   },
-  productImage: {
+  image: {
     width: '100%',
-    height: 400,
+    height: 300,
+    resizeMode: 'contain',
     marginBottom: 10,
-    objectFit: 'contain',
-    borderRadius: 10,
   },
-  productName: {
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#fff',
   },
-  productPrice: {
+  price: {
     fontSize: 18,
-    color: '#999',
     marginBottom: 10,
+    color: '#fff',
   },
-  productDescription: {
-    fontSize: 16,
-    marginBottom: 20,
+  description: {
+    fontSize: 14,
+    color: '#E5E6E4',
   },
-
 });
 
 export default ProductDetailsScreen;
