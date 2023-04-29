@@ -58,9 +58,12 @@ const AuthNavigator = ({navigation}) => {
           //screen for product details
         }
         <Stack.Screen
-          name='ProductDetails'
+          name='productDetails'
           component={ProductDetailsScreen}
-          options={({route}) => ({title: route.params.productId})}
+          options={
+            ({route}) => ({title: route.params.productId})
+          }
+
         />
         {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       </Stack.Navigator>
