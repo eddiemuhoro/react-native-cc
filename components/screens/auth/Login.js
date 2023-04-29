@@ -1,26 +1,64 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Button, StyleSheet, TouchableHighlight } from 'react-native'
 import { TextInput, View } from 'react-native'
 import { Text } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
+    const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+    const handleLogin = async () => {
+        setLoading(true);
+        const data = {
+          email: email,
+          password: password,
+        };
+
+        try {
+            const response = await axios.post('https://usella.fly.dev/login', data);
+            //store response in local storage
+            const user = JSON.stringify(response.data);
+            await AsyncStorage.setItem('user', user);
+            console.log(response.data);
+            navigation.navigate('Shop');
+          } catch (error) {
+            console.log(error);
+          } finally {
+            setLoading(false);
+          }
+      }
+
+      //if user is logged in, navigate to shop
+      useEffect(() => {
+        AsyncStorage.getItem('user')
+            .then(user => {
+                if (user) {
+                    navigation.navigate('Shop');
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }, []);
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.textHeader}>Welcome Back!</Text>
                 <Text style={styles.textSubHeader}>Please sign in to your account</Text>
             </View>
-            <TextInput style={styles.textInput} placeholder="Email" placeholderTextColor="gray" />
-            <TextInput style={styles.textInput} placeholder="Password" placeholderTextColor="gray" />
+            <TextInput style={styles.textInput} placeholder="Email" placeholderTextColor="gray" onChangeText={text => setEmail(text)} />
+            <TextInput style={styles.textInput} placeholder="Password" placeholderTextColor="gray" onChangeText={text => setPassword(text)} />
             <TouchableHighlight
                 style={styles.buttonContainer}
                 underlayColor="#5467FF"
-                onPress={() => {
-                    // Handle button press
-                    navigation.navigate('Shop', {userName: 'Edwin'})
-                }}
+                onPress={handleLogin}
             >
-                <Text style={styles.buttonText}>Sign In</Text>
+                {
+                    loading ? <Text style={styles.buttonText}>Signing in...</Text> : <Text style={styles.buttonText}>Sign In</Text>
+                }
+               
             </TouchableHighlight>
 
             <Text style={styles.defaultText} >
