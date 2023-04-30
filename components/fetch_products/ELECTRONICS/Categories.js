@@ -4,6 +4,8 @@ import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, Touch
 
 import axios from 'axios';
 import Fashion from '../FASHION/Products';
+//import colors from constants
+import { COLORS } from '../../../constants/constants';
 export const CategoryContext = createContext();
 
 const Categories = ({ route, navigation }) => {
@@ -109,6 +111,7 @@ const styles = StyleSheet.create({
         padding: 10,
         width: '100%',
        backgroundColor:'#15202B',
+       flex:1
     },
     title: {
         fontSize: 20,

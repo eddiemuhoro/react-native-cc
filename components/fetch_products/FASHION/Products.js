@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
-import { API_URL } from '../../../constants/constants';
+import { API_URL, COLORS } from '../../../constants/constants';
 
 const Fashion = ({ route, navigation, category }) => {
 
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     container: {
         padding: 10,
         width: '100%',
-       backgroundColor:'#15202B',
+     
         
     },
   
@@ -109,10 +109,10 @@ const styles = StyleSheet.create({
       productName: {
         fontSize: 16,
         marginBottom: 3,
-        color:'#fff'
+        color:COLORS.heading
       },
       productPrice: {
         fontSize: 14,
-        color: '#ccc',
+        color: COLORS.text
       },
 })
