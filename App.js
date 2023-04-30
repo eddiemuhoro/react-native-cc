@@ -7,10 +7,11 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import 'react-native-gesture-handler';
 import Login from './components/screens/auth/Login';
 import Myprofile from './components/profile/Myprofile';
+import { COLORS } from './constants/constants';
 const Drawer= createDrawerNavigator();
 export default function App() {
   return (
-    <View style={styles.container}>
+    <NavigationContainer style={styles.container}>
 
  
     {/* <NavigationContainer>
@@ -36,14 +37,17 @@ export default function App() {
     </NavigationContainer> */}
     <AuthNavigator />
 
-    </View>
+    </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        marginTop: 0,
+        backgroundColor: COLORS.theme,
+     
+      
         
     }
 });
