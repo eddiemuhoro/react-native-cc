@@ -8,12 +8,15 @@ import BottomNavigation from './BottomNavigation';
 import { ScreenStackHeaderRightView } from 'react-native-screens';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ProductDetailsScreen from '../components/fetch_products/FASHION/Details';
+// import { useNavigation } from '@react-navigation/native';
+
 
 const Stack = createNativeStackNavigator();
 
 const AuthNavigator = ({navigation}) => {
+  // const nav = useNavigation()
   return (
-    <NavigationContainer>
+   
       <Stack.Navigator
       initialRouteName='Login'
       screenOptions={{
@@ -38,11 +41,13 @@ const AuthNavigator = ({navigation}) => {
             name="Shop"
             options={{
               headerBackVisible: false,
+             
               headerRight: () => (
                 <Icon name="account-circle" 
                 size={30} 
                 color="white" 
-              
+                //open drawer
+                // onPress={() => navigation.openDrawer()}
                 />
               ),
             }}
@@ -67,7 +72,7 @@ const AuthNavigator = ({navigation}) => {
         />
         {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       </Stack.Navigator>
-      </NavigationContainer>
+    
   );
 };
 
