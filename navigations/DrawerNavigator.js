@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native'
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import Favorites from '../components/fetch_products/FAVORITES/Favorites';
+import Favorites from '../components/profile/tabs/Favorites';
 const Drawer= createDrawerNavigator();
 const DrawerNavigator = () => {
   return (

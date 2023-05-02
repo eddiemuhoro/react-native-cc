@@ -5,7 +5,7 @@ import Home from '../components/Home';
 import Register from '../components/screens/auth/Register';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Settings from '../components/profile/Settings';
-import Favorites from '../components/fetch_products/FAVORITES/Favorites';
+import Favorites from '../components/profile/tabs/Favorites';
 
 const Tab = createBottomTabNavigator();
 

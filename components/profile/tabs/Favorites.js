@@ -98,24 +98,24 @@ console.log('====================================');
   );
 
   return (
-    <TouchableWithoutFeedback onPress={()=> setShowMenu(false)}>
-    <View style={styles.container}>
+    <TouchableWithoutFeedback onPress={() => setShowMenu(false)}>
+      <View style={styles.container}>
         {/* <Text>My orders</Text> */}
         <FlatList
-          data={[{key:"header"}, ...orders, {key:"footer"}]}
-          renderItem={({item})=>
-          item.key === 'header' ? (
-             <FlatList
-          data={orders}
-          renderItem={renderItem}
-          keyExtractor={item => item.id.toString()}
-        />
-          ): item.key === 'footer' ? (
-             <View style={{ height: 100 }}></View>
-          ): null
+          data={[{ key: "header" }, ...orders, { key: "footer" }]}
+          renderItem={({ item }) =>
+            item.key === 'header' ? (
+              <FlatList
+                data={orders}
+                renderItem={renderItem}
+                keyExtractor={item => item.id.toString()}
+              />
+            ) : item.key === 'footer' ? (
+              <View style={{ height: 100 }}></View>
+            ) : null
           }
         />
-    </View>
+      </View>
     </TouchableWithoutFeedback>
   )
 }
