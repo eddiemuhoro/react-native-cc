@@ -7,6 +7,7 @@ import { COLORS } from '../../../constants/constants';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from 'react-native';
 import { Modal } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 
 
 
@@ -61,6 +62,7 @@ console.log(showMenu);
 console.log('====================================');
 
   const renderItem = ({ item }) => (
+
     <View style={styles.orderItem}>
       <View style={styles.menuIcon}>
         <TouchableOpacity onPress={()=>handlePressMenu(item.id)}>
@@ -92,11 +94,13 @@ console.log('====================================');
         ) : null
       }
     </View>
+    
   );
 
   return (
+    <TouchableWithoutFeedback onPress={()=> setShowMenu(false)}>
     <View style={styles.container}>
-        <Text>My orders</Text>
+        {/* <Text>My orders</Text> */}
         <FlatList
           data={[{key:"header"}, ...orders, {key:"footer"}]}
           renderItem={({item})=>
@@ -112,6 +116,7 @@ console.log('====================================');
           }
         />
     </View>
+    </TouchableWithoutFeedback>
   )
 }
 
