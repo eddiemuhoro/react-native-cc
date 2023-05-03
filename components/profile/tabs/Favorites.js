@@ -17,6 +17,34 @@ const Favorites = () => {
   const [ userData, setUserData ] = useState(null);
   const [showMenu, setShowMenu] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [myOrders, setmyOrders] = useState(true);
+  const [posts, setPosts]= useState(false);
+  const [pendingOrders, setPendingOrders] = useState(false);
+
+  const handleOrders = ()=>{
+    setmyOrders(true);
+    setPosts(false);
+    setPendingOrders(false);
+  }
+
+  const handlePosts = ()=>{
+    setmyOrders(false);
+    setPosts(true);
+    setPendingOrders(false);
+  }
+
+  const handlePendingOrders = ()=>{
+    setmyOrders(false);
+    setPosts(false);
+    setPendingOrders(true);
+  }
+
+  // const styles = StyleSheet.create({
+  //   tabText:{
+  //     borderBottomWidth:1,
+  //     borderBottomColor: myOrders ? COLORS.primary : 'transparent'
+  //   }
+  // })
 
 
   useEffect(() => {
@@ -100,6 +128,18 @@ console.log('====================================');
   return (
     <TouchableWithoutFeedback onPress={() => setShowMenu(false)}>
       <View style={styles.container}>
+        <View style={styles.tabContainer}>
+          <TouchableOpacity onPress={handleOrders}>
+              <Text style={[styles.tabText, {borderColor:myOrders ? 'gray': 'transparent', borderBottomWidth:1}]}> Orders</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={handlePosts}>
+              <Text  style={[styles.tabText, {borderColor:posts ? 'gray': 'transparent', borderBottomWidth:1}]}> Posts</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handlePendingOrders}>
+              <Text style={[styles.tabText, {borderColor:pendingOrders ? 'gray': 'transparent', borderBottomWidth:1}]}> P. Orders</Text>
+          </TouchableOpacity>
+        </View>
         {/* <Text>My orders</Text> */}
         <FlatList
           data={[{ key: "header" }, ...orders, { key: "footer" }]}
@@ -200,6 +240,22 @@ const styles = StyleSheet.create({
       },
       menuItem:{
         marginBottom:10,
+      },
+      //tab styles
+      tabContainer:{
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
+        padding:10,
+       
+      
+      },
+      tabText:{
+        fontSize:16,
+        color:COLORS.text,
+        fontWeight:'bold',
+        padding:10,
+     
       }
 
 })
