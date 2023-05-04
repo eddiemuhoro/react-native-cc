@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { API_URL } from '../../../constants/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ProductDetailsScreen = ({ route }) => {
+const ProductDetailsScreen = ({ route, navigation }) => {
   const { productId } = route.params;
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -33,6 +33,8 @@ const ProductDetailsScreen = ({ route }) => {
     axios.get(`${API_URL}/product/${productId}`)
       .then(response => {
         setProduct(response.data);
+        //navigate to favorites
+      
       })
       .catch(error => {
         console.log(error);
@@ -59,9 +61,12 @@ const ProductDetailsScreen = ({ route }) => {
     try {
       const response = await axios.post(`${API_URL}/order/create`, data);
       console.log(response.data);
-      setLoading(false);
+      setOrders(response.data);
+      navigation.navigate('Favorites');
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
   
@@ -77,7 +82,7 @@ const ProductDetailsScreen = ({ route }) => {
         />
         <Icon name="heart" size={24} color="#ff6b6b" style={{position: 'absolute', right: 10, top: 10}} />
       </View>
-      <Text style={styles.title}>{product.title}</Text>
+      <Text style={styles.title}>{product.name}</Text>
       <Text style={styles.price}>Price: Ksh {product.price}</Text>
       <Text style={styles.description}>{product.description}</Text>
      
