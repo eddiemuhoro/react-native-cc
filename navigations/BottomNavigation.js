@@ -20,8 +20,6 @@ const BottomNavigation = ({navigation}) => {
                 tabBarStyle: {
                     backgroundColor: '#273340',
                     borderTopWidth: 0,
-
-
                 },
             }}
         >
