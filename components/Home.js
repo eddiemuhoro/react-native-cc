@@ -4,7 +4,7 @@ import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, Touch
 
 import axios from 'axios';
 import Fashion from './fetch_products/FASHION/Products';
-import Categories from './fetch_products/ELECTRONICS/Categories';
+import Categories from './fetch_products/PRODUCTS/Categories';
 
 const Home = ({ route, navigation }) => {
 
