@@ -1,23 +1,22 @@
 import React, { useState } from 'react'
 import { useEffect } from "react";
-import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { ActivityIndicator, Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import Ionicons from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import { API_URL, COLORS } from '../../../constants/constants';
 
-const Fashion = ({ route, navigation, category }) => {
+const Products = ({ route, navigation, category }) => {
 
 
-    console.log('====================================');
-    console.log(category);
-    console.log('====================================');
-
+    const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
+        setLoading(true);
         axios.get(`${API_URL}/product`)
             .then(response => {
                 setProducts(response.data);
+                setLoading(false);
             })
             .catch(error => {
                 console.log(error);
@@ -33,6 +32,11 @@ const Fashion = ({ route, navigation, category }) => {
     //       return description
     //     }
     //   }
+    if (loading) {
+        return (
+            <ActivityIndicator size="large" color="#ff6b6b" />
+        );
+      }
     
 
 
@@ -80,7 +84,7 @@ const Fashion = ({ route, navigation, category }) => {
     )
 }
 
-export default Fashion
+export default Products
 
 const styles = StyleSheet.create({
     container: {
