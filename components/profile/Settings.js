@@ -1,14 +1,28 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const Settings = () => {
+const Settings =  ({navigation}) => {
+    const handleLogout = async () => {
+        //remove user from async storage
+        //navigate to login screen
+        try {
+            await AsyncStorage.removeItem('user');
+            navigation.navigate('Login');
+        } catch (error) {
+            console.log(error);
+        }
+      
+        console.log('====================================');
+        console.log('logout');
+        console.log('====================================');
+    }
+
   return (
     <View style={styles.container}>
         <View>
-
-      
                 <Text style={styles.title} >Settings</Text>
                 <View style={styles.settingsItems}>
                     <Text style={styles.subTitle}>Profile Settings</Text>
@@ -45,8 +59,8 @@ const Settings = () => {
         //logout button
     }
  
-          <TouchableOpacity style={styles.button} onPress={() => console.log('Button pressed!')}>
-              <Text style={styles.text}>LOGOUT</Text>
+          <TouchableOpacity style={styles.button} onPress={handleLogout}>
+              <Text style={styles.text} onPress={handleLogout}>LOGOUT</Text>
           </TouchableOpacity>
     </View>
     
