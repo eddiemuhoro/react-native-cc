@@ -6,6 +6,7 @@ import axios from 'axios';
 import Fashion from '../FASHION/Products';
 //import colors from constants
 import { COLORS } from '../../../constants/constants';
+import Products from '../FASHION/Products';
 export const CategoryContext = createContext();
 
 const Categories = ({ route, navigation }) => {
@@ -91,7 +92,7 @@ const Categories = ({ route, navigation }) => {
                   keyExtractor={(item) => item.id}
                 />
   
-                <Fashion navigation={navigation} category={category} />
+                <Products navigation={navigation} category={category} />
               </View>
             ) : item.key === 'footer' ? (
               <View style={{ height: 100 }}><Text>footer</Text></View>
