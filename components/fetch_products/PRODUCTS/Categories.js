@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 import axios from 'axios';
-import Fashion from '../FASHION/Products';
+import Fashion from '../GENERAL/Products';
 //import colors from constants
 import { COLORS } from '../../../constants/constants';
-import Products from '../FASHION/Products';
+import Products from '../GENERAL/Products';
 export const CategoryContext = createContext();
 
 const Categories = ({ route, navigation }) => {
