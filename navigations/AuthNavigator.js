@@ -7,7 +7,7 @@ import Register from '../components/screens/auth/Register';
 import BottomNavigation from './BottomNavigation';
 import { ScreenStackHeaderRightView } from 'react-native-screens';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import ProductDetailsScreen from '../components/fetch_products/FASHION/Details';
+import ProductDetailsScreen from '../components/fetch_products/GENERAL/Details';
 // import { useNavigation } from '@react-navigation/native';
 
 
@@ -42,14 +42,14 @@ const AuthNavigator = ({navigation}) => {
             options={{
               headerBackVisible: false,
              
-              headerRight: () => (
-                <Icon name="account-circle" 
-                size={30} 
-                color="white" 
-                //open drawer
-                // onPress={() => navigation.openDrawer()}
-                />
-              ),
+              // headerRight: () => (
+              //   <Icon name="account-circle" 
+              //   size={30} 
+              //   color="white" 
+              //   //open drawer
+              //   // onPress={() => navigation.openDrawer()}
+              //   />
+              // ),
             }}
             component={BottomNavigation}
         />

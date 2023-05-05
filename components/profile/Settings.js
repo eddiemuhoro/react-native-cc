@@ -35,7 +35,7 @@ const Settings =  ({navigation}) => {
                         <Icon name="angle-right" size={20} color="#fff" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.settingsItem}>
-                        <Text style={styles.settingsItemText}>Devices</Text>
+                        <Text style={styles.settingsItemText}>Profile Details</Text>
                         <Icon name="angle-right" size={20} color="#fff" />
                     </TouchableOpacity>
                    

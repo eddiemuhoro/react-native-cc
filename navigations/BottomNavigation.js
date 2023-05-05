@@ -51,11 +51,11 @@ const BottomNavigation = ({navigation}) => {
                 }}
                 component={Favorites} />
 
-            <Tab.Screen name="Settings"
+            <Tab.Screen name="Profile"
                 options={{
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
-                        <Icon name="gear" color={color} size={size} />
+                        <Icon name="user-circle" color={color} size={size} />
                     )
                 }}
                 component={Settings} />
