@@ -6,6 +6,7 @@ import Register from '../components/screens/auth/Register';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Settings from '../components/profile/Settings';
 import Favorites from '../components/profile/tabs/Favorites';
+import Cart from '../components/fetch_products/PRODUCTS/Cart';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,7 +41,7 @@ const BottomNavigation = ({navigation}) => {
                         <Icon name="shopping-cart" color={color} size={size} />
                     )
                 }}
-                component={Register} />
+                component={Cart} />
 
             <Tab.Screen name="Favorites"
                 options={{

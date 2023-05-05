@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Button, FlatList, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 
 import axios from 'axios';
-import Fashion from '../GENERAL/Products';
 //import colors from constants
 import { COLORS } from '../../../constants/constants';
 import Products from '../GENERAL/Products';
