@@ -8,6 +8,8 @@ import BottomNavigation from './BottomNavigation';
 import { ScreenStackHeaderRightView } from 'react-native-screens';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ProductDetailsScreen from '../components/fetch_products/GENERAL/Details';
+import ProfileDetails from '../components/profile/ProfileDetails';
+import { COLORS } from '../constants/constants';
 // import { useNavigation } from '@react-navigation/native';
 
 
@@ -53,12 +55,7 @@ const AuthNavigator = ({navigation}) => {
             }}
             component={BottomNavigation}
         />
-        <Stack.Screen
-          name='details'
-          component={Home}
-          options={({route}) => ({title: route.params.productId})}
-
-        />
+      
         {
           //screen for product details
         }
@@ -70,6 +67,18 @@ const AuthNavigator = ({navigation}) => {
           }
 
         />
+
+        <Stack.Screen
+          name='profileDetails'
+          component={ProfileDetails}
+          options={{
+            //remove shadow from header
+            headerShadowVisible: false,
+          }
+          }
+         
+        />
+          
         {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
       </Stack.Navigator>
     

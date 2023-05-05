@@ -34,9 +34,9 @@ const Settings =  ({navigation}) => {
                         <Text style={styles.settingsItemText}>Change Password</Text>
                         <Icon name="angle-right" size={20} color="#fff" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.settingsItem}>
-                        <Text style={styles.settingsItemText}>Profile Details</Text>
-                        <Icon name="angle-right" size={20} color="#fff" />
+                    <TouchableOpacity style={styles.settingsItem} >
+                        <Text onPress={()=> navigation.navigate('profileDetails')} style={styles.settingsItemText}>Profile Details</Text>
+                        <Icon onPress={()=> navigation.navigate('profileDetails')} name="angle-right" size={20} color="#fff" />
                     </TouchableOpacity>
                    
                    
@@ -109,7 +109,8 @@ const styles = StyleSheet.create({
         
     },
     settingsItemText:{
-        color:'#E5E6E4'
+        color:'#E5E6E4',
+        width:'100%'
     },
     button: {
         backgroundColor: '#ff6b6b',
