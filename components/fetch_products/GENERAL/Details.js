@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, Button, ScrollView, TouchableOpacity, To
 import { Dimensions } from 'react-native';
 import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { API_URL } from '../../../constants/constants';
+import { API_URL, COLORS } from '../../../constants/constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProductDetailsScreen = ({ route, navigation }) => {
@@ -42,7 +42,11 @@ const ProductDetailsScreen = ({ route, navigation }) => {
   }, [productId]);
 
   if (!product) {
-    return <Text>Loading...</Text>;
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',backgroundColor: COLORS.theme  }}>
+        <Text style={{ fontSize: 18 , color:"#ff6b6b"}}>No posts yet</Text>
+      </View>
+    );
   }
 
 
