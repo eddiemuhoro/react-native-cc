@@ -84,6 +84,14 @@ if (loading) {
     );
   }
 
+  if (posts.length === 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ fontSize: 18 }}>No posts yet</Text>
+      </View>
+    );
+  }
+
   const renderItem = ({ item }) => (
 
     <View style={styles.orderItem}>
@@ -129,7 +137,7 @@ if (loading) {
   return (
     <TouchableWithoutFeedback onPress={() => setShowMenu(false)}>
       <View style={styles.container}>
-        <Text>My Posts</Text>
+       
         <FlatList
           data={[{ key: "header" }, ...posts, { key: "footer" }]}
           renderItem={({ item }) =>
@@ -154,7 +162,7 @@ export default MyPosts
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:COLORS.theme,
+
   },
     orderItem: {
         flexDirection: 'row',

@@ -87,6 +87,14 @@ if (loading) {
     );
   }
 
+  if (orders.length === 0) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center',  }}>
+        <Text style={{ fontSize: 18 , color:"#ff6b6b"}}>No posts yet</Text>
+      </View>
+    );
+  }
+
 
   const renderItem = ({ item }) => (
 
@@ -131,7 +139,7 @@ if (loading) {
   return (
     <TouchableWithoutFeedback onPress={() => setShowMenu(false)}>
       <View style={styles.container}>
-        <Text>My orders</Text>
+     
         <FlatList
           data={[{ key: "header" }, ...orders, { key: "footer" }]}
           renderItem={({ item }) =>
@@ -156,7 +164,7 @@ export default Orders
 const styles = StyleSheet.create({
   container:{
     flex:1,
-    backgroundColor:COLORS.theme,
+  
   },
     orderItem: {
         flexDirection: 'row',
