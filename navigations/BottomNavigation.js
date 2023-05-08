@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Settings from '../components/profile/Settings';
 import Favorites from '../components/profile/tabs/Favorites';
 import Cart from '../components/fetch_products/PRODUCTS/Cart';
+import Player from '../enta/Player';
 
 const Tab = createBottomTabNavigator();
 
@@ -52,6 +53,15 @@ const BottomNavigation = ({navigation}) => {
                 }}
                 component={Favorites} />
 
+<Tab.Screen name="Music"
+                options={{
+                    headerShown: false,
+                    tabBarIcon: ({ color, size }) => (
+                        <Icon name="music" color={color} size={size} />
+                    )
+                }}
+                component={Player} />
+
             <Tab.Screen name="Profile"
                 options={{
                     headerShown: false,
@@ -60,6 +70,7 @@ const BottomNavigation = ({navigation}) => {
                     )
                 }}
                 component={Settings} />
+
         </Tab.Navigator>
     )
 }
